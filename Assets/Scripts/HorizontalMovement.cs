@@ -7,6 +7,8 @@ public class HorizontalMovement : MonoBehaviour
 
     public float moveSpeed = 5;
     public float jumpForce = 5;
+
+    public bool isFirstBall;
     void Start()
     {
         
