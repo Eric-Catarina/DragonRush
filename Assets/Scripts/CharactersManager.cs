@@ -5,15 +5,18 @@ using UnityEngine;
 public class CharactersManager : MonoBehaviour
 {
     public GameObject playerFab, firstCharacter;
-    
-    void Start()
-    {
-        
+    public Vector3 initialSpawnPosition;
+    public List<GameObject> charactersList = new List<GameObject>();
+
+    void Start(){
+        SummonCharacter(initialSpawnPosition);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public GameObject SummonCharacter(Vector3 position){
+
+        GameObject characterInstance = Instantiate(playerFab, position, Quaternion.identity);
+        charactersList.Add(characterInstance);
+        return characterInstance;
     }
+
 }
