@@ -9,7 +9,8 @@ public class CharactersManager : MonoBehaviour
     public List<GameObject> charactersList = new List<GameObject>();
 
     void Start(){
-        SummonCharacter(initialSpawnPosition);
+        if(!firstCharacter) SummonCharacter(initialSpawnPosition);
+        
     }
 
     public GameObject SummonCharacter(Vector3 position){
