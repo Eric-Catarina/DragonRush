@@ -7,17 +7,20 @@ public class BuffManager : MonoBehaviour
 {
 
     public GameObject playerFab;
+    private CharactersManager charactersManager;
     public bool isFirst;
     
-    
+    void Start()
+    {
+        charactersManager = GameObject.Find("CharactersManager").GetComponent<CharactersManager>();
+    }
     void OnTriggerEnter (Collider other) {
         if (other.gameObject.tag == "Gate") {
             if (other.GetComponent<Gate>().isPositive) {
 
                 if (isFirst)
                 {
-                    GameObject playerCopy = Instantiate(playerFab, transform.position, Quaternion.identity);
-                    playerCopy.GetComponent<BuffManager>().isFirst = false;
+                    charactersManager.SummonCharacter();
                 }
                 
             } else {

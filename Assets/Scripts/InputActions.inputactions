@@ -18,17 +18,6 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "ad5ab769-0a15-4fea-8bc0-81b52661e806",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Fly",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c28ec3b3-66a7-4cac-b744-ba1730054720",
                     "path": "<Touchscreen>/primaryTouch/tap",
                     "interactions": "",
