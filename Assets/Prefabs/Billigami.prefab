@@ -175,9 +175,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f7fe233eca8bd47eb3a71a690413bb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buffManager: {fileID: 0}
+  charactersManager: {fileID: 0}
   moveSpeed: 5
-  jumpForce: 3
-  isFirstBall: 1
+  jumpForce: 10
+  isFirst: 0
+  isGrounded: 0
 --- !u!114 &3545814682868661088
 MonoBehaviour:
   m_ObjectHideFlags: 0

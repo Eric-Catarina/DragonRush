@@ -23,11 +23,21 @@ public class HorizontalMovement : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
+        // if is grounded, set color to green
+        if (isGrounded && isFirst)
+        {
+            charactersManager.SetColor(Color.green, gameObject);
+        }
+        else if (!isGrounded && isFirst)
+        {
+            charactersManager.SetColor(Color.red, gameObject);
+        }
     }
 
     public void Jump(){
         if (isFirst && isGrounded)
         {
+            isGrounded = false;
             GetComponent<Rigidbody>().velocity = Vector3.up * jumpForce;
             charactersManager.SetJumpSpot();
         }
@@ -44,9 +54,26 @@ public class HorizontalMovement : MonoBehaviour
     {
         if (other.tag == "JumpSpot")
         {
+            Debug.Log("Deve pular");
             JumpSpot();
         }
     }
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            // Wait 0.1 seconds before setting isGrounded to false
+            isGrounded = true;
+        }
+    }
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            isGrounded = false;
+        }
+    }
+
 
     private void OnCollisionEnter(Collision other)
     {
@@ -57,12 +84,10 @@ public class HorizontalMovement : MonoBehaviour
         }
         
     }
-
-    private void OnCollisionExit(Collision other)
+    
+    private void SetIsGroundedFalse()
     {
-        if (other.gameObject.tag == "Ground")
-        {
-            isGrounded = false;
-        }
+        isGrounded = false;
     }
+
 }

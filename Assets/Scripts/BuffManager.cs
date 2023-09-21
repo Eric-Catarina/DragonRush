@@ -37,6 +37,7 @@ public class BuffManager : MonoBehaviour
         {
             GameObject playerCopy = Instantiate(playerFab, transform.position, Quaternion.identity);
             playerCopy.GetComponent<BuffManager>().isFirst = false;
+            playerCopy.GetComponent<Rigidbody>().velocity = charactersManager.lastCharacter.GetComponent<Rigidbody>().velocity;
         }
     }
 }

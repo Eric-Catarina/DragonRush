@@ -60,7 +60,9 @@ public class CharactersManager : MonoBehaviour
 
     public GameObject SetJumpSpot()
     {
-        GameObject jumpSpotInstance = Instantiate(jumpSpotFab, firstCharacter.transform.position, Quaternion.identity);
+        Vector3 position = firstCharacter.transform.position;
+        position.y -= 0.5f;
+        GameObject jumpSpotInstance = Instantiate(jumpSpotFab, position, Quaternion.identity);
         return jumpSpotInstance;
     }
 
