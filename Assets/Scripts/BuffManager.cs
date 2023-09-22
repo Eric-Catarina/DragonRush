@@ -31,13 +31,5 @@ public class BuffManager : MonoBehaviour
         }
     }
 
-    private void SummonCopies(int amount)
-    {
-        for (int i = 0; i < amount; i++)
-        {
-            GameObject playerCopy = Instantiate(playerFab, transform.position, Quaternion.identity);
-            playerCopy.GetComponent<BuffManager>().isFirst = false;
-            playerCopy.GetComponent<Rigidbody>().velocity = charactersManager.lastCharacter.GetComponent<Rigidbody>().velocity;
-        }
-    }
+
 }

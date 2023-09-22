@@ -12,6 +12,7 @@ public class CharactersManager : MonoBehaviour
     void Start(){
         if(!firstCharacter) SummonCharacter();
         charactersList.Add(firstCharacter);
+        Time.timeScale = 1;
 
     }
     public void RemoveCharacter(GameObject character){
@@ -38,6 +39,7 @@ public class CharactersManager : MonoBehaviour
         SetColor(GetRandomColor(), characterInstance);
         
         charactersList.Add(characterInstance);
+        characterInstance.GetComponent<Rigidbody>().velocity = lastCharacter.GetComponent<Rigidbody>().velocity;
         lastCharacter = charactersList[charactersList.Count - 1];
         return characterInstance;
     }
