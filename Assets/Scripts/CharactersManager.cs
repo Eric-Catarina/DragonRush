@@ -18,6 +18,10 @@ public class CharactersManager : MonoBehaviour
     public void RemoveCharacter(GameObject character){
         charactersList.Remove(character);
         Destroy(character);
+        if(charactersList.Count == 0){
+            Debug.Log("Game Over");
+            
+        }
     }
     
     public int GetIndex(GameObject character)

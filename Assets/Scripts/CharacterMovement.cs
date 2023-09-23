@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HorizontalMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
     public BuffManager buffManager;
     public CharactersManager charactersManager;
@@ -35,27 +35,26 @@ public class HorizontalMovement : MonoBehaviour
     }
 
     public void Jump(){
+        GetComponent<Rigidbody>().velocity = Vector3.up * jumpForce;
+        
+    }
+
+    public void JumpSpot()
+    {
+
         if (isFirst && isGrounded)
         {
             isGrounded = false;
             GetComponent<Rigidbody>().velocity = Vector3.up * jumpForce;
             charactersManager.SetJumpSpot();
         }
-        
-    }
-
-    public void JumpSpot()
-    {
-        GetComponent<Rigidbody>().velocity = Vector3.up * jumpForce;
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "JumpSpot")
         {
-            Debug.Log("Deve pular");
-            JumpSpot();
+            Jump();
         }
     }
     private void OnCollisionStay(Collision other)
@@ -79,7 +78,6 @@ public class HorizontalMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Ground")
         {
-            Debug.Log("Tocou o chao");
             isGrounded = true;
         }
         
