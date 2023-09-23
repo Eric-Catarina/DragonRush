@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CharactersManager : MonoBehaviour
 {
@@ -8,20 +10,13 @@ public class CharactersManager : MonoBehaviour
     public Vector3 initialSpawnPosition;
     public List<GameObject> charactersList = new List<GameObject>();
     public float distanceBetweenCharacters = 1.2f;
+    public static event Action OnCharacterSpawned, OnCharacterRemoved;
 
     void Start(){
         if(!firstCharacter) SummonCharacter();
         charactersList.Add(firstCharacter);
         Time.timeScale = 1;
 
-    }
-    public void RemoveCharacter(GameObject character){
-        charactersList.Remove(character);
-        Destroy(character);
-        if(charactersList.Count == 0){
-            Debug.Log("Game Over");
-            
-        }
     }
     
     public int GetIndex(GameObject character)
@@ -45,7 +40,17 @@ public class CharactersManager : MonoBehaviour
         charactersList.Add(characterInstance);
         characterInstance.GetComponent<Rigidbody>().velocity = lastCharacter.GetComponent<Rigidbody>().velocity;
         lastCharacter = charactersList[charactersList.Count - 1];
+        OnCharacterSpawned?.Invoke();
         return characterInstance;
+    }
+    public void RemoveCharacter(GameObject character){
+        charactersList.Remove(character);
+        OnCharacterRemoved?.Invoke();
+        Destroy(character);
+        if(charactersList.Count == 0){
+            Debug.Log("Game Over");
+            
+        }
     }
     
     public void SetColor(Color color, GameObject character)
