@@ -9,14 +9,8 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadSceneAsync(1);
     }
 
-    public void OpenOptionsScreen(){
-
-    }
-    public void CloseOptionsScreen(){
-
-    }
-
     public void QuitGame(){
+        Application.Quit();
     }
 
 }
