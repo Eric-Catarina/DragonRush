@@ -11,11 +11,13 @@ public class CharactersManager : MonoBehaviour
     public List<GameObject> charactersList = new List<GameObject>();
     public float distanceBetweenCharacters = 1.2f;
     public static event Action OnCharacterSpawned, OnCharacterRemoved;
+    private AudioManager audioManager;
 
     void Start(){
         if(!firstCharacter) SummonCharacter();
         charactersList.Add(firstCharacter);
         Time.timeScale = 1;
+        audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
 
     }
     
@@ -30,6 +32,9 @@ public class CharactersManager : MonoBehaviour
 
 
     public GameObject SummonCharacter(){
+
+        audioManager.PlaySFX(audioManager.musicClips[0]);
+
         Vector3 position = lastCharacter.transform.position;
         position.x += Random.Range(0.8f, distanceBetweenCharacters);
         GameObject characterInstance = Instantiate(playerFab, position, Quaternion.identity);
