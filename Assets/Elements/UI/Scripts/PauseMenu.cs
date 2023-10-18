@@ -12,19 +12,9 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private AudioManager audioManager;
     private bool sfxOn = true;
 
-    void Start()
+    void Awake()
     {
-        sfxOn = PlayerPrefs.GetInt("SFX", 1) == 1;
-        if (sfxOn)
-        {
-            TurnOnSound();
-        }
-        else
-        {
-            TurnOffSound();
-        }
 
-        audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
     }
     public void PauseGame()
     {
@@ -69,6 +59,20 @@ public class PauseMenu : MonoBehaviour
         SFXButton.GetComponent<Image>().color = Color.gray;
         SFXText.text = "OFF";
         audioManager.MuteMaster();
+    }
+    public void Initialize()
+    {
+        sfxOn = PlayerPrefs.GetInt("SFX", 1) == 1;
+        if (sfxOn)
+        {
+            TurnOnSound();
+        }
+        else
+        {
+            TurnOffSound();
+        }
+
+        audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
     }
 
 }

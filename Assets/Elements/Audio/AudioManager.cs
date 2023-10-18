@@ -14,6 +14,14 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] public AudioClip[] musicClips;
 
+    [SerializeField]
+    private PauseMenu pauseMenu;
+
+    void Start()
+    {
+        pauseMenu.Initialize();
+    }
+
     public void PlaySFX(AudioClip clip){
         SFXSource.PlayOneShot(clip);
     }
