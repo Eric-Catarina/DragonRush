@@ -11,6 +11,7 @@ TagManager:
   - Character
   - Border
   - Audio
+  - End
   layers:
   - Default
   - TransparentFX

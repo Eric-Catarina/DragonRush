@@ -15,4 +15,5 @@ public class Character : MonoBehaviour
     {
         charactersManager.RemoveCharacter(gameObject);
     }
+
 }
