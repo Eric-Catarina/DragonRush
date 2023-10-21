@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("--- Clips ---")]
 
-    [SerializeField] public AudioClip[] musicClips;
+    [SerializeField] public AudioClip[] audioClips;
 
     [SerializeField]
     private PauseMenu pauseMenu;
@@ -20,6 +20,7 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         pauseMenu.Initialize();
+        PlaySFX(audioClips[0]);
     }
 
     public void PlaySFX(AudioClip clip){

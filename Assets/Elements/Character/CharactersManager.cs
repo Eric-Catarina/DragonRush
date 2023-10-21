@@ -16,7 +16,6 @@ public class CharactersManager : MonoBehaviour
     void Start(){
         if(!firstCharacter) SummonCharacter();
         charactersList.Add(firstCharacter);
-        Time.timeScale = 1;
         audioManager = GameObject.FindWithTag("Audio").GetComponent<AudioManager>();
 
     }
@@ -33,7 +32,7 @@ public class CharactersManager : MonoBehaviour
 
     public GameObject SummonCharacter(){
 
-        audioManager.PlaySFX(audioManager.musicClips[0]);
+        audioManager.PlaySFX(audioManager.audioClips[2]);
 
         Vector3 position = lastCharacter.transform.position;
         position.x += Random.Range(0.8f, distanceBetweenCharacters);

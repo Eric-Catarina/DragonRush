@@ -14,8 +14,7 @@ public class PauseMenu : MonoBehaviour
 
     void Awake()
     {
-
-    }
+        }
     public void PauseGame()
     {
         Time.timeScale = 0;
@@ -26,11 +25,13 @@ public class PauseMenu : MonoBehaviour
     }
     public void Home()
     {
+        UnpauseGame();
         SceneManager.LoadSceneAsync(0);
     }
 
     public void Restart()
     {
+        UnpauseGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

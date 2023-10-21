@@ -9,7 +9,6 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Coin's OnTriggerEnter method called.");
         if (other.gameObject.tag == "Character")
         {
             OnCoinCollected?.Invoke();
