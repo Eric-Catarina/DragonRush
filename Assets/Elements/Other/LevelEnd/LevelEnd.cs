@@ -9,7 +9,7 @@ public class LevelEnd : MonoBehaviour
     {
         levelEndOverlay.SetActive(true);
         Time.timeScale = 0;
-        UnityRewardedAd.Instace.ShowAd();
+        UnityInterstitialAd.Instace.ShowAd();
 
     }
 
