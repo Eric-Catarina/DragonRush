@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 public class SmurfCatMovement : MonoBehaviour
 {
     public float moveSpeed = 5;
+    public float horizontalSpeed = 2.0f; // Adjust this value to control the smoothness of horizontal movement.
 
-    private Rigidbody rb; // Assuming you're using a Rigidbody for physics-based movement.
+    private Rigidbody rb;
+    private Vector3 targetVelocity;
 
     private PlayerInput playerInput;
 
@@ -26,23 +29,33 @@ public class SmurfCatMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void Update()
+
+    private void FixedUpdate()
     {
-        transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        targetVelocity.x = -moveSpeed;
+        rb.MovePosition(transform.position + targetVelocity * Time.fixedDeltaTime);
+        targetVelocity = Vector3.zero;
     }
 
-    
-    private void OnMoveLeft(InputValue value)
+    public void MoveHorizontally(InputAction.CallbackContext value)
     {
-        Vector2 moveInput = value.Get<Vector2>();
-        Vector3 moveDirection = new Vector3(0, 0, -moveInput.x); // Use x-axis from Vector2
-        rb.velocity = moveDirection * moveSpeed;
+        if (value.phase == InputActionPhase.Performed)
+        {
+            Vector2 moveInput = value.ReadValue<Vector2>();
+            float moveInputX = moveInput.x;
+
+            // Calculate the target velocity based on the input.
+            targetVelocity = new Vector3(0, 0, moveInputX * moveSpeed);
+
+            // Interpolate the character's velocity smoothly toward the target velocity.
+            targetVelocity = Vector3.Lerp(rb.velocity, targetVelocity, horizontalSpeed * Time.fixedDeltaTime);
+        }
+        else if (value.phase == InputActionPhase.Canceled)
+        {
+            // If input is released, set velocity to zero to stop movement.
+            rb.velocity = Vector3.zero;
+        }
     }
 
-    private void OnMoveRight(InputValue value)
-    {
-        Vector2 moveInput = value.Get<Vector2>();
-        Vector3 moveDirection = new Vector3(0, 0, moveInput.x); // Use x-axis from Vector2
-        rb.velocity = moveDirection * moveSpeed;
-    }
+
 }

@@ -931,10 +931,10 @@ RectTransform:
   m_Father: {fileID: 714391088}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 2000, y: 200}
+  m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &102553488
 MonoBehaviour:
@@ -983,8 +983,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 180
-  m_fontSizeBase: 180
+  m_fontSize: 120
+  m_fontSizeBase: 120
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1221,11 +1221,11 @@ RectTransform:
   m_Father: {fileID: 234869102}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -442.94678}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!1001 &150388468
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3318,7 +3318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 93.244, y: 93.245}
+  m_AnchoredPosition: {x: 93.2439, y: 93.244995}
   m_SizeDelta: {x: 186.4877, y: 186.48999}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &460706462
@@ -6882,7 +6882,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -93.24402, y: 93.244995}
+  m_AnchoredPosition: {x: -93.24414, y: 93.244995}
   m_SizeDelta: {x: 186.48767, y: 186.48999}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1053925109
@@ -12326,6 +12326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  horizontalSpeed: 3
 --- !u!114 &823187806673006214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12339,7 +12340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 60c83d1d81762a40caed29d068c0dea6, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -12360,7 +12361,7 @@ MonoBehaviour:
       - m_Target: {fileID: 823187806673006213}
         m_TargetAssemblyTypeName: SmurfCatMovement, Assembly-CSharp
         m_MethodName: MoveHorizontally
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12371,10 +12372,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a0849477-3df3-4aa2-88cb-34778a7ce58b
     m_ActionName: Slide/MoveHorizontally[/Mouse/position,/Device Simulator Touchscreen/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 35be0e1f-ba4b-4d95-88dc-e3e3ba2259b2
-    m_ActionName: Slide/MoveRight[/Device Simulator Touchscreen/primaryTouch/delta,/Mouse/delta]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Horizontal
