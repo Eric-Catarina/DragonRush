@@ -35,6 +35,9 @@ public class SmurfCatMovement : MonoBehaviour
         targetVelocity.x = -moveSpeed;
         rb.MovePosition(transform.position + targetVelocity * Time.fixedDeltaTime);
         targetVelocity = Vector3.zero;
+        
+        ClampPosition();
+
     }
 
     public void MoveHorizontally(InputAction.CallbackContext value)
@@ -55,6 +58,13 @@ public class SmurfCatMovement : MonoBehaviour
             // If input is released, set velocity to zero to stop movement.
             rb.velocity = Vector3.zero;
         }
+    }
+
+    private void ClampPosition()
+    {
+        Vector3 pos = transform.position;
+        pos.z = Mathf.Clamp(pos.z, -2, 2);
+        transform.position = pos;
     }
 
 
