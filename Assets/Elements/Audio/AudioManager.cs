@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class AudioManager : MonoBehaviour
     {
         pauseMenu.Initialize();
         PlaySFX(audioClips[0]);
+        Coin.OnCoinCollected += PlayCoinAudio;
     }
 
     public void PlaySFX(AudioClip clip){
@@ -34,6 +36,13 @@ public class AudioManager : MonoBehaviour
         audioMixer.SetFloat("MasterVolume", 0);
     }
 
+    public void PlayCoinAudio()
+    {
+        PlaySFX(audioClips[1]);
+    }
 
-
+    public void OnDestroy()
+    {
+        Coin.OnCoinCollected -= PlayCoinAudio;
+    }
 }
