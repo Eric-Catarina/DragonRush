@@ -6,13 +6,13 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     public static event Action OnCoinCollected;
-
+    public GameObject coinVFX;
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Character")
         {
             OnCoinCollected?.Invoke();
-            
+            Instantiate(coinVFX, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
