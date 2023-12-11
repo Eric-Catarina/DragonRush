@@ -8,6 +8,7 @@ public class SmurfCatMovement : MonoBehaviour
     public float moveSpeed = 5;
     public float horizontalSpeed = 2.0f; // Adjust this value to control the smoothness of horizontal movement.
 
+
     private Rigidbody rb;
     private Vector3 targetVelocity;
 
