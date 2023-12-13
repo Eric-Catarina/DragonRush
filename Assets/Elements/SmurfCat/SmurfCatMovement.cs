@@ -33,10 +33,9 @@ public class SmurfCatMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        targetVelocity.x = -moveSpeed;
         rb.MovePosition(transform.position + targetVelocity * Time.fixedDeltaTime);
         targetVelocity = Vector3.zero;
-        
+
     }
 
     public void MoveHorizontally(InputAction.CallbackContext value)
@@ -47,10 +46,10 @@ public class SmurfCatMovement : MonoBehaviour
             float moveInputX = moveInput.x;
 
             // Calculate the target velocity based on the input.
-            targetVelocity = new Vector3(0, 0, moveInputX * moveSpeed);
+            Vector3 targetVelocity = new Vector3(moveInputX * moveSpeed, rb.velocity.y, 0);
 
-            // Interpolate the character's velocity smoothly toward the target velocity.
-            targetVelocity = Vector3.Lerp(rb.velocity, targetVelocity, horizontalSpeed * Time.fixedDeltaTime);
+            // Apply the target velocity directly to the rigidbody.
+            rb.velocity = Vector3.Lerp(rb.velocity, targetVelocity, horizontalSpeed * Time.fixedDeltaTime);
         }
         else if (value.phase == InputActionPhase.Canceled)
         {
@@ -58,7 +57,7 @@ public class SmurfCatMovement : MonoBehaviour
             rb.velocity = Vector3.zero;
         }
     }
-    
-
-
 }
+
+
+
