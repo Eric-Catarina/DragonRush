@@ -9,6 +9,6 @@ public class MoveForward : MonoBehaviour
     void Update()
     {
         // Use Vector3.forward to move in the world space forward direction.
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed * Time.deltaTime);
     }
 }

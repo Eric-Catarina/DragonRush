@@ -46,7 +46,7 @@ public class SmurfCatMovement : MonoBehaviour
             float moveInputX = moveInput.x;
 
             // Calculate the target velocity based on the input.
-            Vector3 targetVelocity = new Vector3(moveInputX * moveSpeed, rb.velocity.y, 0);
+            Vector3 targetVelocity = new Vector3(moveInputX * moveSpeed, rb.velocity.y, 10);
 
             // Apply the target velocity directly to the rigidbody.
             rb.velocity = Vector3.Lerp(rb.velocity, targetVelocity, horizontalSpeed * Time.fixedDeltaTime);
