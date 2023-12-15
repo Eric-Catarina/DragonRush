@@ -4,33 +4,37 @@ using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-    [SerializeField] private GameObject element;
+    [SerializeField] private GameObject element, elementContainer;
     [SerializeField] private float timeToGenerate;
     [SerializeField] private float timeToDestroy;
+    [SerializeField]
+    private float minimumXPosition, maximumXPosition;
+    private float timer = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
-        GenerateElement();
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if (timer >= timeToGenerate)
+        {
+            timer = 0;
+            Generate();
+        }
     }
 
-    public void GenerateElement()
+    public void Generate()
     {
-        StartCoroutine(Generate());
-    }
-
-    private IEnumerator Generate()
-    {
-        yield return new WaitForSeconds(timeToGenerate);
-        GenerateElement();
-        GameObject newElement = Instantiate(element, transform.position, Quaternion.identity);
+        float randomXPosition = Random.Range(minimumXPosition, maximumXPosition);
+        randomXPosition = randomXPosition + transform.position.x;
+        Vector3 position = new Vector3(randomXPosition, transform.position.y, transform.position.z);
+        GameObject newElement =  Instantiate(element, position, Quaternion.identity);
+        newElement.transform.parent = elementContainer.transform;
         Destroy(newElement, timeToDestroy);
     }
+
+
 }
