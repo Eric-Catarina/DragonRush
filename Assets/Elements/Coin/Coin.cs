@@ -12,7 +12,8 @@ public class Coin : MonoBehaviour
         if (other.gameObject.tag == "Character")
         {
             OnCoinCollected?.Invoke();
-            Instantiate(coinVFX, transform.position, Quaternion.identity);
+            GameObject coinVFXInstance = Instantiate(coinVFX, transform.position, Quaternion.identity);
+            Destroy(coinVFXInstance, 1f);
             Destroy(gameObject);
         }
     }
