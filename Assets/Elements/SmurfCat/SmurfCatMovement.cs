@@ -7,7 +7,7 @@ public class SmurfCatMovement : MonoBehaviour
 {
     public float moveSpeed = 5;
     public float horizontalSpeed = 2.0f; // Adjust this value to control the smoothness of horizontal movement.
-
+    public GameObject godModeVFX;
 
     private Rigidbody rb;
     private Vector3 targetVelocity;
@@ -22,12 +22,14 @@ public class SmurfCatMovement : MonoBehaviour
     private void OnDisable()
     {
         playerInput.actions.Disable();
+        Sugar.OnSugarCollected -= TurnOnGodMode;
     }
 
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
+        Sugar.OnSugarCollected += TurnOnGodMode;
     }
 
 
@@ -56,6 +58,16 @@ public class SmurfCatMovement : MonoBehaviour
             // If input is released, set velocity to zero to stop movement.
             rb.velocity = Vector3.zero;
         }
+    }
+
+    public void TurnOnGodMode( )
+    {
+        
+        godModeVFX.SetActive(true);
+    }
+    public void TurnOffGodMode( )
+    {
+        godModeVFX.SetActive(false);
     }
 }
 
