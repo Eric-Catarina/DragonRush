@@ -13,7 +13,7 @@ public class Sugar : MonoBehaviour
         {
             OnSugarCollected?.Invoke();
             GameObject sugarVFXInstance = Instantiate(sugarVFX, transform.position, Quaternion.identity);
-            ReparentVfx(sugarVFXInstance);
+            // ReparentVfx(sugarVFXInstance);
             Destroy(sugarVFXInstance, 1f);
             Destroy(gameObject);
         }

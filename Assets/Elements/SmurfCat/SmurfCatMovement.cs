@@ -7,7 +7,7 @@ public class SmurfCatMovement : MonoBehaviour
 {
     public float moveSpeed = 5;
     public float horizontalSpeed = 2.0f; // Adjust this value to control the smoothness of horizontal movement.
-    public GameObject godModeVFX;
+    public GameObject godModeVFX, loseScreen;
 
     private Rigidbody rb;
     private Vector3 targetVelocity;
@@ -23,6 +23,7 @@ public class SmurfCatMovement : MonoBehaviour
     {
         playerInput.actions.Disable();
         Sugar.OnSugarCollected -= TurnOnGodMode;
+        Spike.OnSpikeHit -= ShowLoseScreen;
     }
 
     private void Awake()
@@ -30,9 +31,16 @@ public class SmurfCatMovement : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         rb = GetComponent<Rigidbody>();
         Sugar.OnSugarCollected += TurnOnGodMode;
+        Spike.OnSpikeHit += ShowLoseScreen;
+
     }
 
 
+    private void Update(){
+        if(Input.touchCount > 4){
+            SwitchGodMode();
+        }
+    }
     private void FixedUpdate()
     {
         rb.MovePosition(transform.position + targetVelocity * Time.fixedDeltaTime);
@@ -62,13 +70,36 @@ public class SmurfCatMovement : MonoBehaviour
 
     public void TurnOnGodMode( )
     {
-        
+        StartCoroutine(DeactivateGodModeAfter());
         godModeVFX.SetActive(true);
     }
     public void TurnOffGodMode( )
     {
         godModeVFX.SetActive(false);
     }
+    public void SwitchGodMode( )
+    {
+        if (godModeVFX.activeSelf == false){
+        godModeVFX.SetActive(true);
+        }
+        else{
+        godModeVFX.SetActive(false);
+        }
+    }
+
+    public void ShowLoseScreen()
+    {
+        if (godModeVFX.activeSelf == false){
+            loseScreen.SetActive(true);
+        }
+    }
+    // Deactivate godmode after 10 seconds
+    public IEnumerator DeactivateGodModeAfter()
+    {
+        yield return new WaitForSeconds(30);
+        TurnOffGodMode();
+    }
+
 }
 
 

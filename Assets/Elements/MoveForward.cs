@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class MoveForward : MonoBehaviour
 {
+
     public float speed = 10f;
 
     void Update()
     {
-        // Use Vector3.forward to move in the world space forward direction.
+        speed = -SpeedManager.globalSpeedMultiplier;
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + speed * Time.deltaTime);
     }
 }
